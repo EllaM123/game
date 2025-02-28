@@ -1,6 +1,9 @@
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     info.changeScoreBy(1)
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorDark3, function (sprite, location) {
+    game.gameOver(true)
+})
 tiles.setCurrentTilemap(tilemap`level3`)
 let mySprite = sprites.create(img`
     ........................
