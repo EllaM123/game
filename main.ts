@@ -26,3 +26,5 @@ let mySprite = sprites.create(img`
     ........................
     `, SpriteKind.Player)
 controller.player1.moveSprite(mySprite)
+scene.cameraFollowSprite(mySprite)
+tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorMixed)
