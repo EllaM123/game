@@ -105,9 +105,9 @@ Chest3 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Food3)
-Chest.setPosition(randint(0, 120), randint(0, 120))
-Chest2.setPosition(randint(0, 120), randint(0, 120))
-Chest3.setPosition(randint(0, 120), randint(0, 120))
+tiles.placeOnRandomTile(Chest, sprites.dungeon.floorLight2)
+tiles.placeOnRandomTile(Chest2, sprites.dungeon.floorLight2)
+tiles.placeOnRandomTile(Chest3, assets.tile`myTile`)
 let statusbar = statusbars.create(20, 4, StatusBarKind.Health)
 statusbar.attachToSprite(mySprite)
 statusbar.value = 100
