@@ -55,7 +55,7 @@ Chest = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Food)
-mySprite.setPosition(randint(0, 120), randint(0, 120))
+Chest.setPosition(randint(0, 120), randint(0, 120))
 let statusbar = statusbars.create(20, 4, StatusBarKind.Health)
 statusbar.attachToSprite(mySprite)
 statusbar.value = 100
