@@ -1,9 +1,11 @@
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     info.changeScoreBy(1)
+    sprites.destroy(Chest)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorDark3, function (sprite, location) {
     game.gameOver(true)
 })
+let Chest: Sprite = null
 tiles.setCurrentTilemap(tilemap`level3`)
 let mySprite = sprites.create(img`
     ........................
@@ -35,7 +37,7 @@ controller.player1.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
 tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorMixed)
 info.startCountdown(20)
-let Chest = sprites.create(img`
+Chest = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . f f f f f f f . . . . 
@@ -81,6 +83,7 @@ let mySprite2 = sprites.create(img`
     ........................
     `, SpriteKind.Player)
 controller.player2.moveSprite(mySprite2)
+scene.cameraFollowSprite(mySprite2)
 tiles.placeOnRandomTile(mySprite2, sprites.dungeon.floorMixed)
 let statusbar = statusbars.create(20, 4, StatusBarKind.Health)
 let statusBar2 = statusbars.create(20, 4, StatusBarKind.Health)
