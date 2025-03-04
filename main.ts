@@ -82,3 +82,11 @@ let mySprite2 = sprites.create(img`
     `, SpriteKind.Player)
 controller.player2.moveSprite(mySprite2)
 tiles.placeOnRandomTile(mySprite2, sprites.dungeon.floorMixed)
+let statusbar = statusbars.create(20, 4, StatusBarKind.Health)
+let statusBar2 = statusbars.create(20, 4, StatusBarKind.Health)
+statusbar.attachToSprite(mySprite)
+statusBar2.attachToSprite(mySprite2)
+statusbar.value = 100
+statusBar2.value = 100
+statusbar.setColor(7, 2)
+statusBar2.setColor(7, 2)
