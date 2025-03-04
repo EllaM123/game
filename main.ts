@@ -1,17 +1,9 @@
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
-    statusbar.value += -5
-    statusbar2.value += -5
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     info.changeScoreBy(1)
-    sprites.destroy(Chest)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorDark3, function (sprite, location) {
     game.gameOver(true)
 })
-let statusbar2: StatusBarSprite = null
-let statusbar: StatusBarSprite = null
-let Chest: Sprite = null
 tiles.setCurrentTilemap(tilemap`level3`)
 let mySprite = sprites.create(img`
     ........................
@@ -43,7 +35,7 @@ controller.player1.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
 tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorMixed)
 info.startCountdown(20)
-Chest = sprites.create(img`
+let Chest = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . f f f f f f f . . . . 
@@ -61,7 +53,7 @@ Chest = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Food)
-Chest.setPosition(randint(0, 120), randint(0, 120))
+mySprite.setPosition(randint(0, 120), randint(0, 120))
 let mySprite2 = sprites.create(img`
     ........................
     ........................
@@ -89,13 +81,4 @@ let mySprite2 = sprites.create(img`
     ........................
     `, SpriteKind.Player)
 controller.player2.moveSprite(mySprite2)
-scene.cameraFollowSprite(mySprite2)
 tiles.placeOnRandomTile(mySprite2, sprites.dungeon.floorMixed)
-statusbar = statusbars.create(20, 4, StatusBarKind.Health)
-statusbar2 = statusbars.create(20, 4, StatusBarKind.Health)
-statusbar.attachToSprite(mySprite)
-statusbar2.attachToSprite(mySprite2)
-statusbar.setColor(7, 2)
-statusbar2.setColor(7, 2)
-statusbar.value = 100
-statusbar2.value = 100

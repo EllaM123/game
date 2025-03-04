@@ -2,8 +2,7 @@
     "name": "Game",
     "description": "",
     "dependencies": {
-        "device": "*",
-        "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.2"
+        "device": "*"
     },
     "files": [
         "main.blocks",
@@ -17,7 +16,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "1.12.61",
+        "target": "1.12.59",
         "targetId": "arcade"
     },
     "supportedTargets": [
