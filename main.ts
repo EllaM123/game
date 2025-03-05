@@ -2,6 +2,31 @@ namespace SpriteKind {
     export const Food2 = SpriteKind.create()
     export const Food3 = SpriteKind.create()
 }
+function sentries () {
+    sentry = sprites.create(img`
+        . . . . c b b b b b b c . . . . 
+        . . . . b c b b b b c b . . . . 
+        . . . . b f c b b c f b . . . . 
+        . . . . b f b b b b f b . . . . 
+        . . . . b f b b b b f b . . . . 
+        . . . . b b b b b b b b . . . . 
+        . . . . b b b b b b b b . . . . 
+        . . . . b b f f f f b b . . . . 
+        . . . . b b f f f f b b . . . . 
+        . . . . b b f f f f b b . . . . 
+        . . . . b b f f f f b b . . . . 
+        . . . . b b b b b b b b . . . . 
+        . . . . b b b b b b b b . . . . 
+        . . . . b b b b b b b b . . . . 
+        . . . . b b b b b b b b . . . . 
+        . . . . b b b b b b b b . . . . 
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(sentry, sprites.dungeon.floorLight2)
+}
+function speech () {
+    pause(2000)
+    Otto.sayText(list, 5000, false)
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food3, function (sprite, otherSprite) {
     info.changeScoreBy(1)
     sprites.destroy(Chest3)
@@ -17,11 +42,22 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food2, function (sprite, otherSp
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorDark3, function (sprite, location) {
     game.gameOver(true)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprites.destroy(sentry)
+    statusbar.value += -5
+    sentries()
+})
+let sentry: Sprite = null
+let statusbar: StatusBarSprite = null
 let Chest3: Sprite = null
 let Chest2: Sprite = null
 let Chest: Sprite = null
+let Otto: Sprite = null
+let list: number[] = []
+list = [game.askForNumber("Give 6 Numbers", 6)]
+game.splash("Get Ready!")
 tiles.setCurrentTilemap(tilemap`level3`)
-let mySprite = sprites.create(img`
+Otto = sprites.create(img`
     ........................
     ........................
     ........................
@@ -47,9 +83,9 @@ let mySprite = sprites.create(img`
     ........................
     ........................
     `, SpriteKind.Player)
-controller.moveSprite(mySprite)
-scene.cameraFollowSprite(mySprite)
-tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorMixed)
+controller.moveSprite(Otto)
+scene.cameraFollowSprite(Otto)
+tiles.placeOnRandomTile(Otto, sprites.dungeon.floorMixed)
 info.startCountdown(20)
 Chest = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -108,7 +144,9 @@ Chest3 = sprites.create(img`
 tiles.placeOnRandomTile(Chest, sprites.dungeon.floorLight2)
 tiles.placeOnRandomTile(Chest2, sprites.dungeon.floorLight2)
 tiles.placeOnRandomTile(Chest3, assets.tile`myTile`)
-let statusbar = statusbars.create(20, 4, StatusBarKind.Health)
-statusbar.attachToSprite(mySprite)
+statusbar = statusbars.create(20, 4, StatusBarKind.Health)
+statusbar.attachToSprite(Otto)
 statusbar.value = 100
 statusbar.setColor(7, 2)
+sentries()
+speech()
