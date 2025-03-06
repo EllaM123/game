@@ -28,11 +28,7 @@ function speech () {
     Otto.sayText(list, 5000, false)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food3, function (sprite, otherSprite) {
-    if (statusbar.value <= 90) {
-        info.changeScoreBy(2)
-    } else {
-        info.changeScoreBy(1)
-    }
+    info.changeScoreBy(1)
     sprites.destroy(Chest3)
 })
 statusbars.onStatusReached(StatusBarKind.Health, statusbars.StatusComparison.LTE, statusbars.ComparisonType.Percentage, 0, function (status) {
