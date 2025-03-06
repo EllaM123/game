@@ -53,6 +53,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     sprites.destroy(sentry)
     statusbar.value += -5
     sentries()
+    info.changeScoreBy(1)
 })
 let sentry: Sprite = null
 let statusbar: StatusBarSprite = null
