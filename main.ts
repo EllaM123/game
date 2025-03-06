@@ -154,3 +154,9 @@ statusbar.value = 100
 statusbar.setColor(7, 2)
 sentries()
 speech()
+pause(3000)
+if (info.score() >= 3) {
+    Otto.sayText(":)")
+} else if (info.score() < 3) {
+    Otto.sayText(":(")
+}
